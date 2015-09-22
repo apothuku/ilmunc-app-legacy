@@ -7,7 +7,6 @@ ILMUNC-App
 * [Sass](http://www.sass-lang.com) organizes the CSS and visual elements.
 
 ## Getting Started with the Development Environment
-
 ### Setting up Ionic
 Follow directions [here](http://www.ionicframework.com/getting-started/) to install the command line interface.
 
@@ -25,11 +24,9 @@ cordova plugin add cordova-plugin-inappbrowser
 ```
 
 ### Running the Project
-To run the project on your browser, enter the following command in the project:
+To run the project on your browser, enter the following command in the project and, when prompted, choose option 1.:
 
 ```ionic serve```
-
-and, when prompted, choose option 1.
 
 To run the project on an iOS emulator (only on Mac), type this:
 
