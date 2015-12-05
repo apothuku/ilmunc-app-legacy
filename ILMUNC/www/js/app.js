@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngIOS9UIWebViewPatch'])
 
 .run(function ($ionicPlatform, TwitterLib, $state, $rootScope) {
   $ionicPlatform.ready(function() {
@@ -21,55 +21,83 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       StatusBar.styleDefault();
     }
 
+  Parse.initialize('uGyZ1vxsZMfRgEK4z0iQsmtHDXJd6SYciADRlnZd', '0zAB2Mf7j4z9jEaC9PeKlYK7SopFlSUQrxcPEHpz');
+  
+    var currentUser = Parse.User.current();
+    $rootScope.user = null;
+    $rootScope.isLoggedIn = false;
+
+    if (currentUser) {
+        $rootScope.user = currentUser;
+        $rootScope.isLoggedIn = true;
+        $rootScope.user_type = $rootScope.user.get("user_type");
+
+        if ($rootScope.user_type === "delegate") {
+            $rootScope.committee = $rootScope.user.get("committee");
+            $rootScope.position = $rootScope.user.get("position");
+            $rootScope.bg_link = $rootScope.user.get("bg_link");
+        } else {
+
+        }
+        $rootScope.first_name = $rootScope.user.get("first_name");
+        $rootScope.last_name = $rootScope.user.get("last_name");
+        $rootScope.school = $rootScope.user.get("school");
+
+        $state.go('tab.dashboard');
+    }
+
     // Initialize push notifications!
 
     // first, lets initialize parse. fill in your parse appId and clientKey
+    // parsePlugin.initialize('uGyZ1vxsZMfRgEK4z0iQsmtHDXJd6SYciADRlnZd', 'CLQiaF6zakkJ5SLejcxMJTPaxnWsYUIM5E8nxbH0', function() {
+    //   parsePlugin.subscribe($rootScope.user_type, function() {
+    //       parsePlugin.getInstallationId(function(id) {
+    //           // *
+    //           //  * Now you can construct an object and save it to your own services, or Parse, and corrilate users to parse installations
+    //           //  * 
+    //           //  var install_data = {
+    //           //     installation_id: id,
+    //           //     channels: ['SampleChannel']
+    //           //  }
+    //           //  *      
+    //       }, function(e) {
+    //           alert('error');
+    //       });
 
-    parsePlugin.initialize(uGyZ1vxsZMfRgEK4z0iQsmtHDXJd6SYciADRlnZd, CLQiaF6zakkJ5SLejcxMJTPaxnWsYUIM5E8nxbH0, function() {
-      alert('Parse initialized successfully.');
+    //   }, function(e) {
+    //       alert('error');
+    //   });
 
+    // }, function(e) {
+    //     alert('error');
+    // });
 
-      parsePlugin.subscribe('SampleChannel', function() {
-        alert('Successfully subscribed to SampleChannel.');
+    // parsePlugin.registerCallback('onNotification', function() {
 
+    //   window.onNotification = function(pnObj) {
+    //     // ios pnObj: {"aps": {"alert": message, "sound": "default"},"receivedInForeground":true}
+    //     alert(pnObj.aps.alert);
+        
+    //   };
 
-          parsePlugin.getInstallationId(function(id) {
-            // update the view to show that we have the install ID
-            alert('Retrieved install id: ' + id);
+    // }, function(error) {
+    //   alert(error);
+    // });
 
-              /**
-               * Now you can construct an object and save it to your own services, or Parse, and correlate users to parse installations
-               * 
-               var install_data = {
-                  installation_id: id,
-                  channels: ['SampleChannel']
-               }
-               *
-               */
+    // var Notification = Parse.Object.extend("Notifications");
+    // var notification = new Notification();
 
-          }, function(e) {
-            alert('Failure to retrieve install id.');
-          });
-
-      }, function(e) {
-          alert('Failed trying to subscribe to SampleChannel.');
-      });
-
-    }, function(e) {
-        alert('Failure to initialize Parse.');
-    });
-
+    // notification.set("content", "baoiwrgjoeiiooiawrgiohaerwoughoi;ergioregoiarwhgrghoarwhgoiragoarwhgoarehgouhaeuofhdfheuogosueghuoadhgiuerhgpuawrhuo[arehfouarhgo");
+    // notification.set("channel", "delegate");
+    // notification.save(null, {
+    //   success: function () {
+    //     alert('success');
+    //   },
+    //   error: function () {
+    //     alert('error');
+    //   }
+    // });
   });
-  Parse.initialize('uGyZ1vxsZMfRgEK4z0iQsmtHDXJd6SYciADRlnZd', '0zAB2Mf7j4z9jEaC9PeKlYK7SopFlSUQrxcPEHpz');
-  var currentUser = Parse.User.current();
-  $rootScope.user = null;
-  $rootScope.isLoggedIn = false;
-
-  if (currentUser) {
-      $rootScope.user = currentUser;
-      $rootScope.isLoggedIn = true;
-      $state.go('tab.updates');
-  }
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -99,8 +127,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       url: '/schedule',
       views: {
         'tab-schedule': {
-          templateUrl: 'templates/tab-schedule.html',
-          controller: 'ScheduleCtrl'
+          templateUrl: 'templates/tab-schedule.html'
         }
       }
     })
@@ -110,8 +137,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       url: '/maps',
       views: {
         'tab-maps': {
-          templateUrl: 'templates/tab-maps.html',
-          controller: 'MapsCtrl'
+          templateUrl: 'templates/tab-maps.html'
         }
       }
     })
@@ -120,8 +146,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       url: '/conference',
       views: {
         'tab-conference': {
-          templateUrl: 'templates/tab-conference.html',
-          controller: 'ConferenceCtrl'
+          templateUrl: 'templates/tab-conference.html'
         }
       }
     })
@@ -136,7 +161,35 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       }
     })
 
-  
+    .state('tab.student_info', {
+      url: '/student_info',
+      views: {
+        'tab-dashboard': {
+          templateUrl: 'templates/student_info.html',
+          controller: 'InfoCtrl'
+        }
+      }
+    })
+
+    .state('tab.feedback', {
+      url: '/feedback',
+      views: {
+        'tab-dashboard': {
+          templateUrl: 'templates/feedback.html',
+          controller: 'FeedbackCtrl'
+        }
+      }
+    })
+
+    .state('tab.student_tracker', {
+      url: '/student_tracker',
+      views: {
+        'tab-dashboard': {
+          templateUrl: 'templates/student_tracker.html',
+          controller: 'TrackerCtrl'
+        }
+      }
+    })
 
     .state('tab.social_events', {
       url: '/social_events',
@@ -168,7 +221,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     .state('tab.quick_reference', {
       url: '/quick_reference',
       views: {
-        'tab-conference': {
+        'tab-dashboard': {
           templateUrl: 'templates/quick_reference.html',
         }
       }
@@ -222,11 +275,23 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     .state('tab.around_hotel', {
       url: '/around_hotel',
       views: {
-        'tab-conference': {
+        'tab-dashboard': {
           templateUrl: 'templates/around_hotel.html',
         }
       }
+    })
+
+    .state('tab.dashboard', {
+      url: '/dashboard',
+      views: {
+        'tab-dashboard': {
+          templateUrl: 'templates/dashboard.html',
+          controller: 'DashCtrl'
+        }
+      }
     });
+
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/login');
 

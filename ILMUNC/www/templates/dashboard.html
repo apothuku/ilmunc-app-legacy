@@ -1,0 +1,13 @@
+<ion-view title="Dashboard">
+  <ion-content>
+      <ion-list>
+    	<ion-item ng-if="is_delegate()" href="#/tab/student_info" >Student Info</ion-item>
+    	<ion-item ng-if="is_fa()" href="#/tab/student_tracker">Student Tracker</ion-item>
+    	<ion-item ng-click='request_badge()'>Request a Badge</ion-item>
+    	<ion-item ng-click="open_bg()" ng-if="is_delegate()">Background Guide</ion-item>
+    	<ion-item href="#/tab/feedback">Feedback</ion-item>
+    	<ion-item ng-if="is_delegate()" href="#/tab/quick_reference" >Parli Pro Quick Reference</ion-item>
+    	<ion-item href="#/tab/around_hotel">Around the Hotel</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

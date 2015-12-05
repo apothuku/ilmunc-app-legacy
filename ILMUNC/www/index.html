@@ -13,7 +13,8 @@
     
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
-    <script src="lib/parse/parse.min.js"></script>
+    
+    <script src="js/parse-1.6.7.min.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
@@ -23,77 +24,7 @@
     <script src="js/app.js"></script>
     <script src="js/controllers.js"></script>
     <script src="js/services.js"></script>
-    <!--<script type="text/javascript" src="js/PushNotification.js"></script>
-    <script>
-    function initPushwoosh() {
-      var pushNotification = window.plugins.pushNotification;
-      if(device.platform == "Android")
-      {
-        var pushNotification = window.plugins.pushNotification;
-
-        //initialize Pushwoosh with projectid: "GOOGLE_PROJECT_ID", appid : "PUSHWOOSH_APP_ID". This will trigger all pending push notifications on start.
-        pushNotification.onDeviceReady({ projectid: "885705031937", appid : "E022A-62E63" });
-
-        if(!window.localStorage['Pushwoosh']){ 
-        //register for pushes
-          pushNotification.registerDevice(
-              function(status) {
-                  var pushToken = status;
-                  console.warn('push token: ' + pushToken);
-                  window.localStorage['Pushwoosh'] = true;
-                  //alert("success");
-              },
-              function(status) {
-                  console.warn(JSON.stringify(['failed to register ', status]));
-                  //alert(status);
-              }
-          );
-        }      
-      }else if(device.platform == "iPhone" || device.platform == "iOS")
-      {
-        var pushNotification = window.plugins.pushNotification;
-
-        //set push notification callback before we initialize the plugin
-        document.addEventListener('push-notification', function(event) {
-
-          //get the notification payload
-        var notification = event.notification;
-
-          //display alert to the user for example
-        //  alert(notification.aps.alert);
-        //navigator.notification.alert(notification.aps.alert, alertDismissed, "Alert");
-
-          //clear the app badge
-          pushNotification.setApplicationIconBadgeNumber(0);
-        });
-
-        //initialize the plugin
-        pushNotification.onDeviceReady({pw_appid:"E022A-62E63"});
-
-        if(!window.localStorage['Pushwoosh']){ 
-          //register for pushes
-          pushNotification.registerDevice(
-              function(status) {
-                  var deviceToken = status['deviceToken'];
-                  console.warn('registerDevice: ' + deviceToken);
-                  window.localStorage['Pushwoosh'] = true;
-              },
-              function(status) {
-                  console.warn('failed to register : ' + JSON.stringify(status));
-                //  alert(JSON.stringify(['failed to register ', status]));
-                navigator.notification.alert(JSON.stringify(['failed to register ', status]),
-                alertDismissed, "Alert");
-              }
-          );
-        }
-
-        //reset badges on app start
-        pushNotification.setApplicationIconBadgeNumber(0);
-      }
-    }
-    function alertDismissed() {
-    }
-   </script>-->
+    <script src="js/angular-ios9-uiwebview.patch.js"></script>
   </head>
   <body ng-app="starter" animation="slide-left-right-ios7">
     <!-- 
@@ -115,6 +46,7 @@
       Templates are in the /templates folder (but you could also
       have templates inline in this html file if you'd like).
     -->
-    <ion-nav-view></ion-nav-view>
+    <ion-nav-view>
+    </ion-nav-view>
   </body>
 </html>

@@ -1,28 +1,13 @@
-<ion-view title="Updates"  ng-controller="MyCtrl">
-		<ion-content class="padding">
-		<a class="item" style="padding:30px" href="#" onclick="window.open(encodeURI('http://k-rudy.github.io/phonegap-twitter-timeline?536979154907197441'), '_blank', 'location=no');"><img style="height:40px;vertical-align:middle; padding-right:10px;" src="img/twitter-logo.png"/>Twitter Feed</a>
-		<a class="item" style="padding:30px" href="#" onclick="window.open(encodeURI('http://instagram.com/ilmunc'), '_blank', 'location=no');"><img style="height:40px;vertical-align:middle; padding-right:10px;" src="img/instagram-logo.png"/>Instagram Feed</a>
-		<a class="item" style="padding:30px" href="#" onclick="window.open(encodeURI('http://facebook.com/ilmunc'), '_blank', 'location=no');"><img style="height:40px;vertical-align:middle; padding-right:10px;"  src="img/facebook-logo.png"/>Facebook Feed</a>
-		<!--		<a class="twitter-timeline"
-				 	data-dnt="true"
-				 	href="https://twitter.com/ILMUNC"
-				 	data-widget-id="536979154907197441"
-				 	width="400"
-				 	height="600">
-				 		Tweets by @ILMUNC
-				</a>
-				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>-->
-		<!--<button class="button button-dark" ng-click="doStatus()">Refresh</button>
-	    <div ng-repeat="item in items" class="list card">
-	        <div class="item item-avatar">
-	            <img ng-src="{{ item.user.profile_image_url }}"/>
-	            <h2>{{item.user.name}}</h2>
-	            <p>{{item.created_at | date:'MMM d, y h:mma'}}</p>
-	        </div>
-	        <div class="item item-body">
-	            <p>{{item.text}}</p>
-	            <img ng-if="item.picture" ng-src="{{ item.picture }}"/>
-			</div>
-	    </div>-->
+<ion-view title="Updates">
+	<ion-content class="padding">
+		<a class="item" style="padding:30px" ng-click="open_twitter()"><img style="height:40px;vertical-align:middle; padding-right:10px;" src="img/twitter-logo.png"/>Twitter Feed</a>
+		<a class="item" style="padding:30px" ng-click="open_instagram()"><img style="height:40px;vertical-align:middle; padding-right:10px;" src="img/instagram-logo.png"/>Instagram Feed</a>
+		<a class="item" style="padding:30px" ng-click="open_facebook()"><img style="height:40px;vertical-align:middle; padding-right:10px;"  src="img/facebook-logo.png"/>Facebook Feed</a>
+		
+		<!-- <h4>Notifications</h4>
+		<div class="row" ng-repeat="notification in notifications">
+			<div class="col">{{ notification.get('content') }}</div>
+		</div> -->
+
 	</ion-content>
 </ion-view>

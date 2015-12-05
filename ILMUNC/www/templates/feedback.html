@@ -1,0 +1,26 @@
+<ion-view title="Feedback">
+	<ion-content>
+		<div class="list item-text-wrap">
+			<label class="item item-input item-floating-label">
+				<span class="input-label" style="width:100%">How was your overall experience at conference?</span>
+				<textarea placeholder="How was your overall experience at conference?" ng-model="feedback.answer1"></textarea>
+			</label>
+			<label class="item item-input item-floating-label">
+				<span class="input-label" style="width:100%">What should ILMUNC focus on improving for the future?</span>
+				<textarea placeholder="What should ILMUNC focus on improving for the future?" ng-model="feedback.answer2"></textarea>
+			</label>
+			<label class="item item-input item-floating-label">
+				<span class="input-label" style="width:100%">What was the most unique part of conference you experienced?</span>
+				<textarea placeholder="What was the most unique part of conference you experienced?" ng-model="feedback.answer3"></textarea>
+			</label>
+			</label>
+			<label class="item item-input item-floating-label">
+				<span class="input-label" style="width:100%">If you could, would you attend again next year?</span>
+				<textarea placeholder="If you could, would you attend again next year?" ng-model="feedback.answer4"></textarea>
+			</label>
+			<div class="padding">
+	        	<button class="button button-block button-positive activated" ng-click="submit_form()">Submit</button>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,17 @@
+<ion-view title="Student Tracker">
+  <ion-content>
+
+  	<div class="row">
+  		<div class="col"><h6 class="positive">Name</h6></div>
+  		<div class="col"><h6 class="positive">Committee</h6></div>
+  		<div class="col"><h6 class="positive">Position</h6></div>
+  		<div class="col"><h6 class="positive">Room</h6></div>
+  	</div>
+	<div class="row" ng-repeat="delegate in delegates">
+		<div class="col" >{{ delegate.get('first_name') + ' ' + delegate.get('last_name') }}</div>
+		<div class="col">{{ delegate.get('committee') }}</div>
+		<div class="col">{{ delegate.get('position') }}</div>
+		<div class="col">{{ delegate.get('room') }}</div>
+	</div>
+  </ion-content>
+</ion-view>

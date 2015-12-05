@@ -15,6 +15,14 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
-    "https://github.com/benjie/phonegap-parse-plugin"
-  ]
+    "https://github.com/benjie/phonegap-parse-plugin",
+    "https://github.com/apache/cordova-plugin-whitelist.git",
+    {
+      "locator": "https://github.com/apache/cordova-plugin-whitelist.git",
+      "id": "cordova-plugin-whitelist"
+    },
+    "https://github.com/grrrian/phonegap-parse-plugin",
+    "cordova-plugin-inappbrowser"
+  ],
+  "cordovaPlatforms": []
 }
